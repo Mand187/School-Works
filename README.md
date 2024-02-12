@@ -16,7 +16,7 @@ provided you have a working compiler that is reasonably up to date it should wor
 
 Projects can be run by opening the respective folder in any IDE.
 
-### ECGR 3180 in Python
+### ECGR 3180 and ECGR 2104 in Python
 
 Find the Python implementation in its dedicated folder with clear instructions.
 
