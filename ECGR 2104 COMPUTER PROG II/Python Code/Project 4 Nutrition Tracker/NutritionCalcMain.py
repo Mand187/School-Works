@@ -19,8 +19,13 @@ def getFoodItems():
 def main():
     foodMenu = getFoodItems()
 
-    for food in foodMenu:
-        print(f"Name: {food.getName()}, Calories: {food.getCalories()}, Total Fat: {food.getTotalFat()}, Total Sugars: {food.getTotalSugars()}, Protein: {food.getProtein()}, Sodium: {food.getSodium()}")
+    for i, food in enumerate(foodMenu, start=1):
+        print(f"{i}. Name: {food.getName()}, Calories: {food.getCalories()}, Total Fat: {food.getTotalFat()}, Total Sugars: {food.getTotalSugars()}, Protein: {food.getProtein()}, Sodium: {food.getSodium()}")
+
+    try:
+        # Get user input for the first location selection
+        first_location_index = int(input("Select the first location (enter the corresponding number): ")) - 1
+        firstitem = getFoodItems[first_location_index]
 
 if __name__ == "__main__":
     main()

@@ -34,7 +34,10 @@ class FoodItem:
     def getTotalFat(self):
         return self.totalFat
     
-    def getProtein(self):  # Corrected method name
+    def getTotalSugars(self):
+        return self.totalSugars
+    
+    def getProtein(self):  # Corrected me
         return self.protein
     
     def getSodium(self):
