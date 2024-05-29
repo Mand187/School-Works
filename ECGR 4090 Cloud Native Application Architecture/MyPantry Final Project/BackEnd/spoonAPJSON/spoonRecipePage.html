@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Card</title>
+  <style>
+    /* Add CSS styling for the recipe card */
+    .recipe-card {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin: 20px;
+      width: 400px;
+      position: relative; /* Needed for absolute positioning of summary */
+    }
+    .recipe-card h2 {
+      margin-top: 0;
+    }
+    .recipe-card ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .recipe-card ul li {
+      margin-bottom: 10px;
+    }
+    .recipe-card .summary {
+      display: none; /* Hide the summary by default */
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: #fff; /* Change the background color as needed */
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    .recipe-card:hover .summary {
+      display: block; /* Show the summary when hovering */
+    }
+  </style>
+</head>
+<body>
+
+<div class="recipe-card"></div>
+
+<script>
+// Fetch JSON data from spoonRecipe.json
+fetch('./spoonRecipe.json')
+  .then(response => response.json())
+  .then(recipeData => {
+    // Read the contents of the JSON file
+    const title = recipeData.title;
+    const ingredients = recipeData.extendedIngredients;
+    const summary = recipeData.summary;
+    const cookTime = recipeData.readyInMinutes;
+
+    // Create recipe card elements
+    const recipeCard = document.querySelector('.recipe-card');
+    recipeCard.innerHTML = `
+      <h2>${title}</h2>
+      <h3>Ingredients:</h3>
+      <ul>
+        ${ingredients.map((ingredient, index) => `
+          <li>${index + 1}. ${ingredient.name}, ${ingredient.amount} ${ingredient.measures.metric.unitLong}</li>
+        `).join('')}
+      </ul>
+      <div class="summary">
+        <p><strong>Summary:</strong> ${summary}</p>
+      </div>
+      <div class="footer">
+        <p>Cook Time: ${cookTime} minutes</p>
+        <button class="cook-now-button">Cook Now</button>
+      </div>
+    `;
+
+    // Add event listener to the "Cook Now" button
+    const cookNowButton = recipeCard.querySelector('.cook-now-button');
+    cookNowButton.addEventListener('click', () => {
+      window.location.href = 'spoonCookNow.html'; // Redirect to cookNow.html
+    });
+  })
+  .catch(error => console.error('Error fetching data:', error));
+
+
+
+</script>
+
+</body>
+</html>
