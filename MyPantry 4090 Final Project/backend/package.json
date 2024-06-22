@@ -11,8 +11,15 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+<<<<<<< HEAD
     "cors": "^2.8.5",
     "express": "^4.19.2",
+=======
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.7.0",
+>>>>>>> 937e2735292f1083df7a56052ad647657feef5d8
     "mongoose": "^8.4.0",
     "nodemon": "^3.1.2"
   }

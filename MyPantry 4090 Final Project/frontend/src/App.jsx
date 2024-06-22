@@ -1,11 +1,20 @@
 import { useState } from 'react'
+<<<<<<< HEAD
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+=======
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Signup  from './pages/signUpPage'
+import Login   from './pages/userLogPage'
+import Landing from './pages/landingPage'
+>>>>>>> 937e2735292f1083df7a56052ad647657feef5d8
 
 function App() {
   const [count, setCount] = useState(0)
 
+<<<<<<< HEAD
   return (
     <>
       <div>
@@ -33,3 +42,17 @@ function App() {
 }
 
 export default App
+=======
+    return (
+      <BrowserRouter>
+      <Routes>
+        <Route path='/'         element={<Landing />}></Route>
+        <Route path='/register' element={<Signup />}></Route>
+        <Route path='/login'    element={<Login />}></Route>
+      </Routes>
+      </BrowserRouter>
+    )
+}
+
+export default App
+>>>>>>> 937e2735292f1083df7a56052ad647657feef5d8
