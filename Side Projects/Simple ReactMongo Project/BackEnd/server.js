@@ -9,7 +9,7 @@ const PORT = 3000;
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors()); // Use cors middleware
+app.use(cors()); 
 
 // Routes
 app.use('/users', userRoutes);
