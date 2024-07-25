@@ -18,13 +18,18 @@ router.post('/create', async (req, res) => {
   }
 });
 
-// Get all users
-router.get('/all', async (req, res) => {
+router.post('/login', async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
+    const { username, password } = req.body;
+    const user = new User({ username, password });
+    await user.save();
+    res.status(201).json(user);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching users', error });
+    if (error.code === 11000) {
+      // Duplicate key error
+      return res.status(400).json({ message: 'Username already exists' });
+    }
+    res.status(500).json({ message: 'Error creating user', error });
   }
 });
 

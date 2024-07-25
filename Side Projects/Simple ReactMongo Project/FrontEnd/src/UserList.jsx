@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { CircularProgress, Box, Typography, Snackbar, Alert } from '@mui/material';
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -10,7 +13,9 @@ const UserList = () => {
         const response = await axios.get('http://localhost:3000/users/all');
         setUsers(response.data);
       } catch (error) {
-        console.error('There was an error fetching the users!', error);
+        setError('There was an error fetching the users!');
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -18,14 +23,30 @@ const UserList = () => {
   }, []);
 
   return (
-    <div>
-      <h2>User List</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user._id}>{user.username}</li>
-        ))}
-      </ul>
-    </div>
+    <Box sx={{ padding: 2 }}>
+      <Typography variant="h4" component="h2" gutterBottom>
+        User List
+      </Typography>
+      {loading ? (
+        <CircularProgress />
+      ) : error ? (
+        <Snackbar open={Boolean(error)} autoHideDuration={6000} onClose={() => setError(null)}>
+          <Alert onClose={() => setError(null)} severity="error">
+            {error}
+          </Alert>
+        </Snackbar>
+      ) : (
+        <ul>
+          {users.length > 0 ? (
+            users.map((user) => (
+              <li key={user._id}>{user.username}</li>
+            ))
+          ) : (
+            <Typography>No users found</Typography>
+          )}
+        </ul>
+      )}
+    </Box>
   );
 };
 
