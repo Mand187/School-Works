@@ -24,7 +24,7 @@ function ToDoList() {
 
     function addTask() {
         if (newTask.trim() !== "") {
-            setTasks(t => [...t, newTask]);
+            setTasks(t => [...t, { task: newTask }]);  // Add as an object
             setNewTask("");
         }
     }
@@ -33,19 +33,32 @@ function ToDoList() {
         setTasks([]);
     }
 
-    function saveTasks() {
-        fetch('http://localhost:5000/saveTasks', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ tasks }),
-        })
-        .then(response => response.text())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error));
+    async function saveTasks() {
+        try {
+            // Ensure tasks is a valid array of objects
+            if (!Array.isArray(tasks) || tasks.some(task => typeof task !== 'object')) {
+                throw new Error('Invalid data format');
+            }
+
+            // Send only the relevant data
+            const response = await fetch('http://localhost:5000/saveTasks', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(tasks)  // Make sure tasks is the correct format
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const result = await response.json();
+            console.log('Tasks saved:', result);
+        } catch (error) {
+            console.error('Error saving tasks:', error);
+        }
     }
-    
 
     function deleteTask(index) {
         const updatedTasks = tasks.filter((_, i) => i !== index);
@@ -70,7 +83,7 @@ function ToDoList() {
 
     return (
         <div className="to-do-list">
-            <h1>To-Do-List</h1>
+            <h1>To-Do List</h1>
             <div className="input-container">
                 <input
                     type='text'
@@ -85,7 +98,7 @@ function ToDoList() {
             <ol>
                 {tasks.map((task, index) =>
                     <li key={index}>
-                        <span className='text'>{task}</span>
+                        <span className='text'>{task.task}</span>  {/* Access task text */}
                         <button className='delete-button' onClick={() => deleteTask(index)}>DELETE</button>
                         <button className='move-button' onClick={() => moveTaskUp(index)}>UP</button>
                         <button className='move-button' onClick={() => moveTaskDown(index)}>DOWN</button>

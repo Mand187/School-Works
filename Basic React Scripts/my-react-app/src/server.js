@@ -9,7 +9,7 @@ const port = 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-const uri = 'mongodb://localhost:27017/todolist';
+const uri = 'mongodb://localhost:27017/Todolist';
 
 mongoose.connect(uri)
     .then(() => console.log('MongoDB connected...'))
