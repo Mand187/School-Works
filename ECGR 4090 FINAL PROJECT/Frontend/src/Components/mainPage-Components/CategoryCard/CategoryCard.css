@@ -1,0 +1,31 @@
+.category-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .card-items {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+  
+  .card-item {
+    flex: 0 0 auto;
+    width: 150px;
+    margin-right: 10px;
+    text-align: center;
+  }
+  
+  .card-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .item-count {
+    font-weight: bold;
+  }
+  

@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './loginStyle.css'; // Use same or different styles
+
+const generateRandomToken = () => {
+  return Math.random().toString(36).substr(2, 16); // Generate a random token
+};
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,7 +30,15 @@ const RegisterPage = () => {
 
       const data = await response.json();
       console.log('Registration successful', data);
-      // Handle successful registration, e.g., redirect to login or home
+
+      // Generate and store a random token
+      const token = generateRandomToken();
+      console.log('Generated Token:', token);
+      localStorage.setItem('token', token); // Store the token in localStorage
+
+      // Redirect to login or main page
+      navigate('/login'); // Redirect to login page
+
     } catch (error) {
       console.error('Error:', error);
       setErrorMessage('Registration failed. Please try again.');

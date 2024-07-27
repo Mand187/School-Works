@@ -1,0 +1,54 @@
+.pantry-container {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    margin-top: 40px; /* Space for the fixed navbar */
+  }
+  
+  .pantryBtn {
+    background-color: #A49665;
+    color: #005035;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 10px; /* Space between buttons */
+  }
+  
+  .pantryBtn:hover {
+    background-color: #8d7d52;
+  }
+  
+  .category-card {
+    width: 300px; /* Adjust width as needed */
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .card-items {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px 0;
+  }
+  
+  .card-item {
+    flex: 0 0 auto;
+    width: 150px;
+    margin-right: 10px;
+  }
+  
+  .card-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .item-count {
+    font-weight: bold;
+  }
+  

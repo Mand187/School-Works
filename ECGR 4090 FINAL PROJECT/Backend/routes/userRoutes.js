@@ -1,4 +1,5 @@
 const express = require('express');
+const crypto = require('crypto'); // For token generation
 const router = express.Router();
 const User = require('../models/User');
 
@@ -6,9 +7,15 @@ const User = require('../models/User');
 router.post('/register', async (req, res) => {
   try {
     const { username, password } = req.body;
-    const user = new User({ username, password });
+
+    // Generate a random token
+    const token = crypto.randomBytes(16).toString('hex');
+
+    // Create a new user with the generated token
+    const user = new User({ username, password, token });
     await user.save();
-    res.status(201).json({ message: 'User created successfully' });
+
+    res.status(201).json({ message: 'User created successfully', token });
   } catch (error) {
     if (error.code === 11000) {
       return res.status(400).json({ message: 'Username already exists' });
@@ -30,7 +37,7 @@ router.post('/login', async (req, res) => {
 
     // Check if the passwords match
     if (password === user.password) {
-      res.status(200).json({ message: 'Login successful' });
+      res.status(200).json({ message: 'Login successful', token: user.token });
     } else {
       res.status(401).json({ message: 'Invalid username or password' });
     }
