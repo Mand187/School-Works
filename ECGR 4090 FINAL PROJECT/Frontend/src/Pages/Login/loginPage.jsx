@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './loginStyle.css';
 
 const LoginPage = () => {
-  const handleSubmit = (event) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle the form submission logic here
-    console.log('Form submitted');
+
+    try {
+      const response = await fetch('http://localhost:3000/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const data = await response.json();
+      console.log('Login successful', data);
+      // Handle successful login, e.g., save the token and redirect
+    } catch (error) {
+      console.error('Error:', error);
+      setErrorMessage('Login failed. Please check your credentials and try again.');
+    }
   };
 
   return (
@@ -18,6 +41,8 @@ const LoginPage = () => {
           id="uname"
           placeholder="Enter Username"
           name="uname"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
           aria-label="Username"
         />
@@ -28,12 +53,15 @@ const LoginPage = () => {
           id="psw"
           placeholder="Enter Password"
           name="psw"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
           aria-label="Password"
         />
         
         <button type="submit" id="loginButton">Login</button>
       </form>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <div className="link-container">
         <div className="register-link">
           <a href="/register">Register</a>
