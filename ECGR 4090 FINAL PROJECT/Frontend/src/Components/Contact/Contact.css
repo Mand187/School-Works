@@ -1,11 +1,9 @@
 .contactForm {
-  margin: 80px auto;
-  max-width: 90%;
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
-  background-color: #f9f9f9; /* Optional: to distinguish the form background */
+  font-family: Arial, sans-serif;
   padding: 20px;
+  width: 100%; /* Extend to the full width of the container */
+  margin: 0; /* Remove margin to stretch edge to edge */
+  background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -71,8 +69,8 @@ input, textarea {
 }
 
 .Submit-btn {
-  background-color: lightblue;
-  color: white;
+  background-color: #005bb5;
+  color: #212121;
   padding: 14px 25px;
   font-size: 16px;
   border-radius: 30px;
@@ -80,10 +78,10 @@ input, textarea {
   border: 0; 
   outline: 0;
   display: inline-flex;
-  align-items: center;
+  align-content: center;
   justify-content: center;
 }
 
 .Submit-btn:hover {
-  background-color: #0073e6;
+  background-color: #86b3e0;
 }
