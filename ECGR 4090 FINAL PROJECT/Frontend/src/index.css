@@ -21,8 +21,8 @@ a{
 }
 
 .defaultBtn {
-  background-color: #ffff;
-  color: #212121;
+  background-color: #A49665;
+  color: #005035;
   padding: 14px 25px;
   font-size: 16px;
   border-radius: 30px;
@@ -35,5 +35,6 @@ a{
 }
 
 .defaultBtn:hover {
-  background-color: #005bb5;
+  background: #FFFFFF; /* Quartz White */
+  color: #A49665; /* Niner Gold */
 }

@@ -1,27 +1,20 @@
-import Navbar from './Components/Navbar/Navbar';
-import Hero from './Components/Hero/Hero';
-import About from './Components/About/About';
-import Contact from './Components/Contact/Contact';
-import Copyright from './Components/Copyright/Copyright';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Pages/Landing/Landing'; 
+import LoginPage from './Pages/Login/loginPage'; 
+import RegisterPage from './Pages/Login/RegisterPage ';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <Navbar />
-      <section id="home">
-        <Hero />
-      </section>
-      <section id="about">
-        <About />
-      </section>
-      <section id="contact">
-        <Contact />
-      </section>
-      <section id="copyright">
-        <Copyright />
-      </section>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        {/* Add other routes here */}
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

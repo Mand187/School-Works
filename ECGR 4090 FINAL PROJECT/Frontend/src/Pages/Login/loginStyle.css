@@ -1,0 +1,72 @@
+/* loginStyle.css */
+
+.login-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 50px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#loginForm label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+#loginForm input {
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+#loginForm input:focus {
+  border-color: #005035;
+  outline: none;
+}
+
+#loginButton {
+  background-color: #A49665;
+  color: #005035;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#loginButton:hover {
+  background-color: #8a7b54;
+  color: #003824;
+}
+
+.link-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.register-link a,
+.password-reset-link a {
+  color: #005035;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.register-link a:hover,
+.password-reset-link a:hover {
+  text-decoration: underline;
+}
