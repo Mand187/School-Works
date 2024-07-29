@@ -1,6 +1,6 @@
 .hero {
-    background: url('/path/to/your/image.jpg') no-repeat center center/cover; /* Replace with your background image path */
-    height: 100vh; /* Adjust height as needed */
+    background: url('../../../assets/Hero-Background.jpg') no-repeat center center/cover; /* Replace with your background image path */
+    height: 125vh; /* Adjust height as needed */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,11 +17,13 @@
     font-size: 3em;
     margin-bottom: 20px;
     font-weight: bold;
+    color: white;
   }
   
   .hero p {
     font-size: 1.2em;
     margin-bottom: 20px;
+    color: white;
   }
 
   .hero a {

@@ -1,17 +1,19 @@
 import React from 'react';
 import './About.css';
+import unccLogo from '../../../assets/UNCC-Logo.jpg';
 
 const About = () => {
   return (
     <div className='About'>
       <div className='About-content'>
-        <div className='AboutP'>
-          <p>PLACE HOLDER FOR UNCC LOGO</p>
-        </div>
         <h1>About myPantry</h1>
         <p>
           This represents a final project completed for ECGR 4090 Cloud Native Application Architecture in the Spring semester of 2024.
+          Additional work was done over summer to complete signifcant missing features.
         </p>
+        <div className='AboutP'>
+          <img src={unccLogo} alt="UNCC Logo" />
+        </div>
         <h2>Features</h2>
         <ul className='features-list'>
           <li>Takes input of food items that a user has in their possession</li>

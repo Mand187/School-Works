@@ -27,6 +27,11 @@
   color: #676767;
 }
 
+.AboutP img {
+  width: 500px;
+  height: auto;
+}
+
 h1 {
   font-size: 2em;
   color: #000f38;
