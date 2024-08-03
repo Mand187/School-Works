@@ -1,0 +1,59 @@
+nav {
+    width: 100%;
+    background: #005035; /* Charlotte Green */
+    color: #fff;
+    padding: 4px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.sticky {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Title {
+    color: #A49665; /* Niner Gold */
+    padding: 4px;
+    font-size: 30px;
+    flex: 1;
+}
+
+.usrWelcome {
+    font-size: 16px; /* Adjusted font size to a more appropriate value */
+    text-align: center;
+    flex: 2;
+}
+
+nav ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 5px 20px;
+    font-size: 16px;
+}
+
+.navbar-Btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #A49665; /* Niner Gold */
+    text-decoration: none;
+}
+
+.navbar-Btn:hover {
+    text-decoration: underline;
+}

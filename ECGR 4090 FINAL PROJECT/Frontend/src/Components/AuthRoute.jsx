@@ -12,4 +12,4 @@ const AuthRoute = ({ element }) => {
   return isAuthenticated() ? element : <Navigate to="/login" />;
 };
 
-export default AuthRoute; // Ensure this is a default export
+export default AuthRoute; 

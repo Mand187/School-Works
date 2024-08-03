@@ -2,28 +2,29 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // Import cors
-const userRoutes = require('./routes/userRoutes');
+const cors = require('cors');
+const helmet = require('helmet');
+const connectDB = require('./config/db');
 
+// Initialize express app
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
+app.use(helmet()); // Use Helmet early to set security headers
 app.use(bodyParser.json());
-app.use(cors()); 
+app.use(cors());
 
-// Routes
+// Connect to MongoDB using connectDB function
+connectDB();
+
+// Import routes
+const userRoutes = require('./routes/userRoutes');
+const pantryRoutes = require('./routes/pantryRoutes');
+
+// Use routes
 app.use('/users', userRoutes);
-
-// Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('Connected to MongoDB'))
-  .catch(error => console.error('Error connecting to MongoDB:', error));
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+app.use('/api/pantry', pantryRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -31,5 +32,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-const helmet = require('helmet');
-app.use(helmet());
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
