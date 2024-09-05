@@ -8,6 +8,7 @@ const generateRandomToken = () => {
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState(''); // Added email state
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate(); // Initialize navigate
@@ -16,12 +17,12 @@ const RegisterPage = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/users/register', {
+      const response = await fetch('http://localhost:3000/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, email, password }), // Added email to body
       });
 
       if (!response.ok) {
@@ -49,6 +50,19 @@ const RegisterPage = () => {
     <div className="login-container">
       <h2>Register</h2>
       <form id="registerForm" onSubmit={handleSubmit}>
+
+        <label htmlFor="email">Email</label>
+        <input
+          type="email" // Changed to email type for validation
+          id="email"
+          placeholder="Enter Email"
+          name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          aria-label="Email"
+        />
+
         <label htmlFor="uname">Username</label>
         <input
           type="text"

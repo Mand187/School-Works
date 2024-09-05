@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import './loginStyle.css';
+import './loginStyle.css'; // Use same or different styles
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -12,7 +12,7 @@ const LoginPage = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/users/login', {
+      const response = await fetch('http://localhost:3000/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,7 +23,8 @@ const LoginPage = () => {
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Login failed:', errorData.message);
-        throw new Error('Login failed');
+        setErrorMessage('Login failed. Please check your credentials and try again.');
+        throw new Error(errorData.message); // Provide specific error message
       }
 
       const data = await response.json();
@@ -48,24 +49,24 @@ const LoginPage = () => {
     <div className="login-container">
       <h2>Login</h2>
       <form id="loginForm" onSubmit={handleSubmit}>
-        <label htmlFor="uname">Username</label>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
-          id="uname"
+          id="username"
           placeholder="Enter Username"
-          name="uname"
+          name="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           required
           aria-label="Username"
         />
         
-        <label htmlFor="psw">Password</label>
+        <label htmlFor="password">Password</label>
         <input
           type="password"
-          id="psw"
+          id="password"
           placeholder="Enter Password"
-          name="psw"
+          name="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
