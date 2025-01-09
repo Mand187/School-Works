@@ -1,0 +1,4 @@
+- CNT and Unnamed feature are not equivalent
+    - For some reason the CNT feature is not equal to the index after around 50k or so
+    - This is because the CNT feature is not the index, but rather the index of the data in the original dataset
+    - This is why the CNT feature 
