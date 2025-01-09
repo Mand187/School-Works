@@ -9,4 +9,4 @@
 This is a code repository for computer programing II taken over summer with our lord and savior
 saint Dr. Shue
 
-
+You will also Find the Python Versions of each HW written on my own time in their respective Python folder
